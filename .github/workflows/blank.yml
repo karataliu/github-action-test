@@ -14,14 +14,14 @@ jobs:
 
     - run: |
         docker build . -t doliugaa.azurecr.cn/k8sdemo:${{ github.sha }}
-        docker push contoso.azurecr.cn/k8sdemo:${{ github.sha }}
+        docker push doliugaa.azurecr.cn/k8sdemo:${{ github.sha }}
 
     # Set the target AKS cluster.
     - uses: Azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: doliutt01naad2v
-        resource-group: doliua1
+        cluster-name: ae
+        resource-group: doliugaa
 
     - uses: Azure/k8s-create-secret@v1
       with:
@@ -33,8 +33,8 @@ jobs:
     - uses: Azure/k8s-deploy@v1
       with:
         manifests: |
-          manifests/deployment.yml
-          manifests/service.yml
+          manifests/deployment.yaml
+          manifests/service.yaml
         images: |
           demo.azurecr.cn/k8sdemo:${{ github.sha }}
         imagepullsecrets: |

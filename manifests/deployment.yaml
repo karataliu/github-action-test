@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-1
+  template:
+    metadata:
+      labels:
+        app: nginx-1
+    spec:
+      containers:
+      - name: n11
+        image: doliugaa.azurecr.cn/k8sdemo:l1
+        ports:
+        - containerPort: 80
